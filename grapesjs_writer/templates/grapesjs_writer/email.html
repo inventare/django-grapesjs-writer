@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://unpkg.com/grapesjs@0.21.10/dist/css/grapes.min.css" rel="stylesheet" />
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+</head>
+<body>
+
+    <div id="gjs"></div>
+
+    <script src="https://unpkg.com/grapesjs@0.21.10/dist/grapes.min.js"></script>
+    <script src="https://unpkg.com/grapesjs-preset-newsletter@1.0.2/dist/index.js"></script>
+    <script type="text/javascript">
+      var editor = grapesjs.init({
+        height: '100%',
+        container : '#gjs',
+        assetManager: {
+          upload: "{% url 'grapesjs_assets:upload' %}",
+          uploadName: 'files',
+          embedAsBase64: false,
+          showUrlInput: false,
+          multiUploadSuffix: '',
+          headers: {
+            'X-CSRFToken': "{{ csrf_token }}",
+          },
+        },
+        plugins: ['grapesjs-preset-newsletter'],
+        pluginsOpts: {
+          'grapesjs-preset-newsletter': {
+            // options
+          }
+        },
+      });
+    </script>      
+</body>
+</html>
